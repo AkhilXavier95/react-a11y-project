@@ -1,10 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { calculateString } from "./stringCalculator";
 
 const App = () => {
   const [input, setInput] = useState<string>("");
-  const [result] = useState<number | null>(null);
+  const [result, setResult] = useState<number | null>(null);
 
-  const handleCalculate = () => {};
+  const handleCalculate = () => {
+    const sum = calculateString(input);
+    setResult(sum);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setInput("");
+        setResult(null);
+      }
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleCalculate();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [input]);
 
   return (
     <main style={{ padding: "20px", backgroundColor: "#fff", color: "#aaa" }}>
