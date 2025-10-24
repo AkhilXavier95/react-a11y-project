@@ -24,4 +24,8 @@ describe("String Calculator", () => {
   test("ignores non-numeric values", () => {
     expect(calculateString("1,abc,3")).toBe(4);
   });
+
+  test("supports custom single-character delimiter", () => {
+    expect(calculateString("//;\n1;2")).toBe(3);
+  });
 });
