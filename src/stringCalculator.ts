@@ -23,7 +23,7 @@ export const calculateString = (input: string): number => {
   for (const numStr of numbers) {
     const num = Number(numStr);
 
-    if (!isNaN(num)) {
+    if (!isNaN(num) && num <= 1000) {
       sum += num;
     }
   }
