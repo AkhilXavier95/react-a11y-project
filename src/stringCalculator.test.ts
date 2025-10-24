@@ -20,4 +20,8 @@ describe("String Calculator", () => {
   test("supports newline as delimiter", () => {
     expect(calculateString("1\n2,3")).toBe(6);
   });
+
+  test("ignores non-numeric values", () => {
+    expect(calculateString("1,abc,3")).toBe(4);
+  });
 });
