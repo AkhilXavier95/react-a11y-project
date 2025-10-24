@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { calculateString } from "./stringCalculator";
 
+import "./styles/app.css";
+
 const App = () => {
   const [input, setInput] = useState<string>("");
   const [result, setResult] = useState<number | null>(null);
@@ -8,6 +10,11 @@ const App = () => {
   const handleCalculate = () => {
     const sum = calculateString(input);
     setResult(sum);
+  };
+
+  const handleClear = () => {
+    setInput("");
+    setResult(null);
   };
 
   useEffect(() => {
@@ -26,7 +33,7 @@ const App = () => {
   }, [input]);
 
   return (
-    <main style={{ padding: "20px", backgroundColor: "#fff", color: "#aaa" }}>
+    <main>
       <header>
         <img
           src="https://images.unsplash.com/photo-1594352161389-11756265d1b5?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -39,9 +46,9 @@ const App = () => {
       </header>
 
       <section>
-        <h1 style={{ fontSize: "20px" }}>Enter numbers</h1>
+        <h1>Enter numbers</h1>
 
-        <label htmlFor="calculator-input" style={{ display: "block" }}>
+        <label htmlFor="calculator-input">
           Input your string of numbers and delimiters:
         </label>
 
@@ -50,7 +57,6 @@ const App = () => {
           name="calculator-input"
           aria-label="String calculator input"
           aria-describedby="input-hint"
-          style={{ margin: "10px 0", color: "#aaa" }}
           placeholder="Enter numbers"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -62,34 +68,30 @@ const App = () => {
           }}
         />
 
-        <p id="input-hint" style={{ fontSize: "14px", color: "#666" }}>
+        <p id="input-hint" className="input-hint">
           You can use commas, newlines, or custom delimiters (e.g.{" "}
           <code>//[***]</code>).
         </p>
 
-        <button
-          type="button"
-          onClick={handleCalculate}
-          style={{
-            padding: "10px",
-            backgroundColor: "#008cba",
-            color: "#fff",
-            border: "none"
-          }}
-        >
-          Calculate
-        </button>
+        <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+          <button type="button" onClick={handleCalculate}>
+            Calculate
+          </button>
+          <button className="button btn-clear" onClick={handleClear}>
+            Clear
+          </button>
+        </div>
       </section>
 
-      <section role="status" aria-live="polite">
-        {result !== null && <p style={{ color: "green" }}>Result: {result}</p>}
+      <section role="status" aria-live="polite" className="result">
+        <p>Result: {result ?? 0}</p>
       </section>
       <div role="alert">
         <p>Make sure you enter numbers correctly!</p>
       </div>
-      <details style={{ marginTop: "20px", fontSize: "14px", color: "#666" }}>
+      <details>
         <summary>Keyboard Shortcuts</summary>
-        <ul style={{ marginLeft: "20px" }}>
+        <ul>
           <li>
             <kbd>Enter</kbd> - Calculate result
           </li>
