@@ -5,7 +5,15 @@ export const calculateString = (input: string): number => {
   if (!isNaN(n)) return n;
 
   let sum = 0;
-  const numbers = input.split(/,|\n/);
+  let delimiter = /,|\n/;
+
+  let numbers = input.split(delimiter);
+  const delimited = input.match(/^\/\/(.)\n(.*)/);
+
+  if (delimited) {
+    delimiter = new RegExp(delimited[1]);
+    numbers = delimited[2].split(delimiter);
+  }
 
   for (const numStr of numbers) {
     const num = Number(numStr);
@@ -14,5 +22,6 @@ export const calculateString = (input: string): number => {
       sum += num;
     }
   }
+
   return sum;
 };
