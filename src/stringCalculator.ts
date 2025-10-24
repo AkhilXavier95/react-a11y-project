@@ -8,6 +8,11 @@ export const calculateString = (input: string): number => {
   let delimiter = /,|\n/;
 
   let numbers = input.split(delimiter);
+  const negatives = numbers.filter((n) => Number(n) < 0);
+
+  if (negatives.length)
+    throw new Error("Negatives not allowed: " + negatives.join(","));
+
   const delimited = input.match(/^\/\/(.)\n(.*)/);
 
   if (delimited) {
