@@ -11,4 +11,9 @@ describe("String Calculator", () => {
     const result = calculateString("5");
     expect(result).toBe(5);
   });
+
+  test("string with multiple numbers with comma delimited returns sum", () => {
+    expect(calculateString("1,2,3")).toBe(6);
+    expect(calculateString("1,3,5")).toBe(9);
+  });
 });
