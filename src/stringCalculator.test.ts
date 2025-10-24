@@ -28,4 +28,10 @@ describe("String Calculator", () => {
   test("supports custom single-character delimiter", () => {
     expect(calculateString("//;\n1;2")).toBe(3);
   });
+
+  test("negatives throw error with all negatives listed", () => {
+    expect(() => calculateString("1,-2,3,-4")).toThrow(
+      "Negatives not allowed: -2,-4"
+    );
+  });
 });
