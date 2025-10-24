@@ -62,7 +62,7 @@ const App = () => {
         </button>
       </section>
 
-      <section aria-live="polite">
+      <section role="status" aria-live="polite">
         {result !== null && <p style={{ color: "green" }}>Result: {result}</p>}
       </section>
       <div role="alert">
