@@ -16,4 +16,8 @@ describe("String Calculator", () => {
     expect(calculateString("1,2,3")).toBe(6);
     expect(calculateString("1,3,5")).toBe(9);
   });
+
+  test("supports newline as delimiter", () => {
+    expect(calculateString("1\n2,3")).toBe(6);
+  });
 });
