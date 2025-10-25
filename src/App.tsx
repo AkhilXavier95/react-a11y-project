@@ -84,13 +84,15 @@ const App = () => {
       </section>
 
       <section role="status" aria-live="polite" className="result">
-        <p>Result: {result ?? 0}</p>
+        <p>
+          Result: <span aria-live="polite">{result ?? 0}</span>
+        </p>
       </section>
       <div role="alert">
         <p>Make sure you enter numbers correctly!</p>
       </div>
       <details>
-        <summary>Keyboard Shortcuts</summary>
+        <summary>Keyboard Shortcuts — expand for details</summary>
         <ul>
           <li>
             <kbd>Enter</kbd> - Calculate result
