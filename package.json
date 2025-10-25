@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "test": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:a11y": "vitest run --globals && jest-axe",
+    "type-check": "tsc --noEmit"
   },
   "license": "MIT",
   "author": "Incubyte",
