@@ -1,0 +1,49 @@
+name: Run Tests on PR
+
+on:
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # Setup Node
+      - name: Setup Node.js 20.19
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20.19
+          cache: "npm"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Type checking (if TypeScript)
+      - name: Type check
+        run: npm run type-check --if-present
+
+      # Run linter (optional but recommended)
+      - name: Lint code
+        run: npm run lint --if-present
+
+      # Run tests (Vitest / Jest)
+      - name: Run tests
+        run: npm run test --if-present
+
+      # Run accessibility check (jest-axe)
+      - name: Run a11y tests
+        run: npm run test:a11y --if-present
+
+      # Upload test coverage (optional)
+      - name: Upload coverage
+        if: success() && steps.run_tests.outcome == 'success'
+        uses: actions/upload-artifact@v5
+        with:
+          name: coverage-report
+          path: coverage
