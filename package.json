@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "preview": "vite preview",
-    "test:a11y": "vitest run --globals && jest-axe",
+    "test:a11y": "vitest run",
     "type-check": "tsc --noEmit"
   },
   "license": "MIT",
@@ -46,6 +46,7 @@
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
     "jest": "^30.2.0",
+    "jest-axe": "^10.0.0",
     "jsdom": "^27.0.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",

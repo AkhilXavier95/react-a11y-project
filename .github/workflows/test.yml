@@ -43,7 +43,7 @@ jobs:
       # Upload test coverage (optional)
       - name: Upload coverage
         if: success() && steps.run_tests.outcome == 'success'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: coverage-report
           path: coverage
